@@ -43,16 +43,3 @@ const partial = (fn, ...firstArgs) => (...lastArgs) => fn(...firstArgs, ...lastA
 const not = (fn) => (...args) => !fn(...args);
 
 const when = (fn) => (predicate) => (...args) => predicate(...args) ? fn(...args) : false;
-
-
-const inc = (x) => x + 1;
-const dec = (x) => x - 1;
-const double = (x) => x * 2;
-const half = (x) => x / 2;
-
-const f = (...args) => console.log(args);
-reminder(f, 2)(1, 2, 3, 4, 5);
-
-const list = [2, 5, 8, 11, 14, 17, 20];
-console.log(fusion(list, [double, dec, inc]));
-console.log(fusion(list, [inc, dec, double]));
