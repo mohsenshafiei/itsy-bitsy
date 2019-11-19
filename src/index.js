@@ -48,3 +48,5 @@ const clone = (args) => args.map(arg => Array.isArray(arg) ? clone(arg) : arg);
 const deduplicate = (args) => [...new Set(args)]
 
 const debug = (arg) => (console.log(arg), arg);
+
+const reverseRight = (arr) => arr.reduceRight((result, value) => [...result, value], []);
