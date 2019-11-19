@@ -50,3 +50,5 @@ const deduplicate = (args) => [...new Set(args)]
 const debug = (arg) => (console.log(arg), arg);
 
 const reverseRight = (arr) => arr.reduceRight((result, value) => [...result, value], []);
+
+const flat = (arr) => arr.reduce((result, value) => Array.isArray(value) ? [...result, ...flat(value)] : [...result, value], [])
