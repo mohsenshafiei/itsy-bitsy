@@ -29,7 +29,6 @@ const multiplication = ([sum, ...args], cont) => (args.length === 0) ? cont(sum)
 
 const pi = ((...args) => (...args) => multiplication(args, v => v))();
 
-// function chaining and function combination
 const compose = (...fns) => (result) => fns.reverse().reduce((result, fn) => fn(result), result);
 
 const pipe = (...fns) => (result) => fns.reduce((result, fn) => fn(result), result);
@@ -43,3 +42,7 @@ const partial = (fn, ...firstArgs) => (...lastArgs) => fn(...firstArgs, ...lastA
 const not = (fn) => (...args) => !fn(...args);
 
 const when = (fn) => (predicate) => (...args) => predicate(...args) ? fn(...args) : false;
+
+const clone = (args) => args.map(arg => Array.isArray(arg) ? clone(arg) : arg);
+
+const deduplicate = (args) => [...new Set(args)]
