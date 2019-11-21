@@ -33,6 +33,8 @@ const compose = (...fns) => (result) => fns.reverse().reduce((result, fn) => fn(
 
 const pipe = (...fns) => (result) => fns.reduce((result, fn) => fn(result), result);
 
+const pipeAsyncFunctions = (...fns) => arg => fns.reduce((p, f) => p.then(f), Promise.resolve(arg));
+
 const fusion = (args, fns) => args.map(compose(...fns));
 
 const defusion = (args, fns) => args.map(pipe(...fns));
@@ -76,3 +78,11 @@ const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...b
 const removeNonASCII = str => str.replace(/[^\x20-\x7E]/g, '');
 
 const powerset = arr => arr.reduce((a, v) => a.concat(a.map(r => [v].concat(r))), [[]]);
+
+const findLast = (arr, fn) => arr.filter(fn).pop();
+
+const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args));
+
+const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const curry = (fn, arity = fn.length, ...args) => arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
