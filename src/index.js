@@ -59,13 +59,13 @@ const takeRightWhile = (arr, fn) => arr.reduceRight((res, el) => (fn(el) ? [el, 
 
 const mapString = (str, fn) => str.split('').map((c, i) => fn(c, i, str)).join('');
 
-const uniqueElementsBy = (arr, fn) => arr.reduce((acc, v) => (not(acc.some(x => fn(v, x)))) ? (acc.push(v), acc : acc), []);
+const uniqueElementsBy = (arr, fn) => arr.reduce((acc, v) => !acc.some(x => fn(v, x)) ? (acc.push(v), acc) : acc, []);
 
 const filterNonUnique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
 
 const isEven = num => num % 2 === 0;
 
-const isOdd = num => not(isEven(num));
+const isOdd = not(isEven);
 
 const cloneRegExp = regExp => new RegExp(regExp.source, regExp.flags);
 
@@ -86,3 +86,11 @@ const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args));
 const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const curry = (fn, arity = fn.length, ...args) => arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
+
+const is = (type, val) => ![, null].includes(val) && val.constructor === type;
+
+const isLowerCase = str => str === str.toLowerCase();
+
+const isUpperCase = str => str === str.toUpperCase();
+
+const reject = (pred, array) => array.filter((...args) => !pred(...args));
