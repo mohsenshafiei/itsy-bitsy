@@ -53,4 +53,26 @@ const reverseRight = (arr) => arr.reduceRight((result, value) => [...result, val
 
 const flat = (arr) => arr.reduce((result, value) => Array.isArray(value) ? [...result, ...flat(value)] : [...result, value], [])
 
-const takeRightWhile = (arr, fn) => arr.reduceRight((res, el) => (fn(el) ? [el, ...res], []));
+const takeRightWhile = (arr, fn) => arr.reduceRight((res, el) => (fn(el) ? [el, ...res] : []));
+
+const mapString = (str, fn) => str.split('').map((c, i) => fn(c, i, str)).join('');
+
+const uniqueElementsBy = (arr, fn) => arr.reduce((acc, v) => (not(acc.some(x => fn(v, x)))) ? (acc.push(v), acc : acc), []);
+
+const filterNonUnique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
+
+const isEven = num => num % 2 === 0;
+
+const isOdd = num => not(isEven(num));
+
+const cloneRegExp = regExp => new RegExp(regExp.source, regExp.flags);
+
+const drop = (arr, n = 1) => arr.slice(n);
+
+const last = arr => arr[arr.length - 1];
+
+const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...boundArgs, ...args]);
+
+const removeNonASCII = str => str.replace(/[^\x20-\x7E]/g, '');
+
+const powerset = arr => arr.reduce((a, v) => a.concat(a.map(r => [v].concat(r))), [[]]);
