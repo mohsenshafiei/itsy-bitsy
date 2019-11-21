@@ -94,3 +94,9 @@ const isLowerCase = str => str === str.toLowerCase();
 const isUpperCase = str => str === str.toUpperCase();
 
 const reject = (pred, array) => array.filter((...args) => !pred(...args));
+
+const defer = (fn, ...args) => setTimeout(fn, 1, ...args);
+
+const toKebabCase = str => str && str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
+
+const timeTaken = callback => (console.time('timeTaken'), callback(), console.timeEnd('timeTaken'));
