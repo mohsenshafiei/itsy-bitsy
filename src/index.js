@@ -100,3 +100,53 @@ const defer = (fn, ...args) => setTimeout(fn, 1, ...args);
 const toKebabCase = str => str && str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-');
 
 const timeTaken = callback => (console.time('timeTaken'), callback(), console.timeEnd('timeTaken'));
+
+const isPrimitive = val => Object(val) !== val;
+
+const digitize = n => [...`${n}`].map(i => parseInt(i));
+
+const radsToDegrees = rad => (rad * 180.0) / Math.PI;
+
+const degreesToRads = deg => (deg * Math.PI) / 180.0;
+
+const truncateString = (str, num) => str.length > num ? str.slice(0, num > 3 ? num - 3 : num) + '...' : str;
+
+const similarity = (arr, values) => arr.filter(v => values.includes(v));
+
+const functionName = fn => (console.debug(fn.name), fn);
+
+const everyNth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1);
+
+const getDaysDiffBetweenDates = (dateInitial, dateFinal) => (dateFinal - dateInitial) / (1000 * 3600 * 24);
+
+const isDivisible = (dividend, divisor) => dividend % divisor === 0;
+
+const isSymbol = val => typeof val === 'symbol';
+
+const splitLines = str => str.split(/\r?\n/);
+
+const pad = (str, length, char = ' ') => str.padStart((str.length + length) / 2, char).padEnd(length, char);
+
+const yesNo = (val, def = false) => /^(y|yes)$/i.test(val) ? true : /^(n|no)$/i.test(val) ? false : def;
+
+const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
+
+const isBeforeDate = (dateA, dateB) => dateA < dateB;
+
+const average = (...nums) => nums.reduce((acc, val) => acc + val, 0) / nums.length;
+
+const shallowClone = obj => Object.assign({}, obj);
+
+const isAbsoluteURL = str => /^[a-z][a-z0-9+.-]*:/.test(str);
+
+const longestItem = (...vals) => vals.reduce((a, x) => (x.length > a.length ? x : a));
+
+const xProd = (a, b) => a.reduce((acc, x) => acc.concat(b.map(y => [x, y])), []);
+
+const getMeridiemSuffixOfInteger = num => num === 0 || num === 24 ? 12 + 'am' : num === 12 ? 12 + 'pm' : num < 12 ? (num % 12) + 'am' : (num % 12) + 'pm';
+
+const initializeArrayWithValues = (n, val = 0) => Array(n).fill(val);
+
+const converge = (converger, fns) => (...args) => converger(...fns.map(fn => fn.apply(null, args)));
+
+const objectFromPairs = arr => arr.reduce((a, [key, val]) => ((a[key] = val), a), {});
