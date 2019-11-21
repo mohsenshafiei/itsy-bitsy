@@ -52,3 +52,5 @@ const debug = (arg) => (console.log(arg), arg);
 const reverseRight = (arr) => arr.reduceRight((result, value) => [...result, value], []);
 
 const flat = (arr) => arr.reduce((result, value) => Array.isArray(value) ? [...result, ...flat(value)] : [...result, value], [])
+
+const takeRightWhile = (arr, fn) => arr.reduceRight((res, el) => (fn(el) ? [el, ...res], []));
