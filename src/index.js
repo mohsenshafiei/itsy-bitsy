@@ -150,3 +150,11 @@ const initializeArrayWithValues = (n, val = 0) => Array(n).fill(val);
 const converge = (converger, fns) => (...args) => converger(...fns.map(fn => fn.apply(null, args)));
 
 const objectFromPairs = arr => arr.reduce((a, [key, val]) => ((a[key] = val), a), {});
+
+const toCurrency = (n, curr, LanguageFormat = undefined) => Intl.NumberFormat(LanguageFormat, { style: 'currency', currency: curr }).format(n);
+
+const clampNumber = (num, a, b) => Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b));
+
+const runPromisesInSeries = ps => ps.reduce((p, next) => p.then(next), Promise.resolve());
+
+const bifurcate = (arr, filter) => arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [[], []]);
