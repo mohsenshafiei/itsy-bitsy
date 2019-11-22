@@ -158,3 +158,13 @@ const clampNumber = (num, a, b) => Math.max(Math.min(num, Math.max(a, b)), Math.
 const runPromisesInSeries = ps => ps.reduce((p, next) => p.then(next), Promise.resolve());
 
 const bifurcate = (arr, filter) => arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [[], []]);
+
+const stripHTMLTags = str => str.replace(/<[^>]*>/g, '');
+
+const all = (arr, fn = Boolean) => arr.every(fn);
+
+const any = (arr, fn = Boolean) => arr.some(fn);
+
+const sortCharactersInString = str => [...str].sort((a, b) => a.localeCompare(b)).join('');
+
+const reduceWhich = (arr, comparator = (a, b) => a - b) => arr.reduce((a, b) => (comparator(a, b) >= 0 ? b : a));
