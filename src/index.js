@@ -168,3 +168,5 @@ const any = (arr, fn = Boolean) => arr.some(fn);
 const sortCharactersInString = str => [...str].sort((a, b) => a.localeCompare(b)).join('');
 
 const reduceWhich = (arr, comparator = (a, b) => a - b) => arr.reduce((a, b) => (comparator(a, b) >= 0 ? b : a));
+
+const btoa = str => Buffer.from(str, 'binary').toString('base64');
