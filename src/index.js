@@ -170,3 +170,5 @@ const sortCharactersInString = str => [...str].sort((a, b) => a.localeCompare(b)
 const reduceWhich = (arr, comparator = (a, b) => a - b) => arr.reduce((a, b) => (comparator(a, b) >= 0 ? b : a));
 
 const btoa = str => Buffer.from(str, 'binary').toString('base64');
+
+const match = (reg, value) => RegExp(`${reg}`).test(value)
