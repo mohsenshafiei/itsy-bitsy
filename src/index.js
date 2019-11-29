@@ -172,3 +172,5 @@ const reduceWhich = (arr, comparator = (a, b) => a - b) => arr.reduce((a, b) => 
 const btoa = str => Buffer.from(str, 'binary').toString('base64');
 
 const match = (reg, value) => RegExp(`${reg}`).test(value)
+
+const flatArray = (arr) => arr.reduce((res, el) => Array.isArray(el) ? [...res, ...flatArray(el)] : [...res, el], []);
