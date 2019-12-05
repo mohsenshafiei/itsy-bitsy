@@ -175,4 +175,4 @@ const match = (reg, value) => RegExp(`${reg}`).test(value)
 
 const flatArray = (arr) => arr.reduce((res, el) => Array.isArray(el) ? [...res, ...flatArray(el)] : [...res, el], []);
 
-const existProperties = (params) => Object.keys(params).reduce((res, key) => (params[key] ? {...res, [key]: params[key]} : res), {});
+const existProperties = (obj) => Object.keys(obj).reduce((res, key) => (obj[key] ? {...res, [key]: obj[key]} : res), {});
