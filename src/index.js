@@ -174,3 +174,5 @@ const btoa = str => Buffer.from(str, 'binary').toString('base64');
 const match = (reg, value) => RegExp(`${reg}`).test(value)
 
 const flatArray = (arr) => arr.reduce((res, el) => Array.isArray(el) ? [...res, ...flatArray(el)] : [...res, el], []);
+
+const existProperties = (params) => Object.keys(params).reduce((res, key) => (params[key] ? {...res, [key]: params[key]} : res), {});
